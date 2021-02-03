@@ -1,5 +1,3 @@
-import { Resident } from './resident.inerface';
-
 export interface Planet {
     climate: string;
     diameter: string;
@@ -7,7 +5,7 @@ export interface Planet {
     name: string;
     orbital_period: string;
     population: string;
-    residents: Resident[];
+    residents: string[];
     rotation_period: string;
     terrain: string;
 }
