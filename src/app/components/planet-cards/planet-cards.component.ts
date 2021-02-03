@@ -41,9 +41,7 @@ export class PlanetСardsComponent implements OnInit, OnDestroy {
     }
 
     navigateToPlanet(url: string): void{
-        const numberPattern = /\d+/g;
-
-        url = url.match( numberPattern )[0];
+        url = url.match( /\d+/g )[0];
         this.router.navigate(['planet',  url]);
     }
 }
