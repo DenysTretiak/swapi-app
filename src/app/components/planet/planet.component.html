@@ -1,0 +1,27 @@
+<mat-card *ngIf="planet">
+    <mat-card-header>
+        <mat-card-title>{{planet.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-list role="list">
+        <mat-list-item role="listitem">Rotation period: {{planet.rotation_period}}</mat-list-item>
+        <mat-list-item role="listitem">Diameter: {{planet.diameter}}</mat-list-item>
+        <mat-list-item role="listitem">Climate: {{planet.climate}}</mat-list-item>
+        <mat-list-item role="listitem">Gravity: {{planet.gravity}}</mat-list-item>
+        <mat-list-item role="listitem">Terrain: {{planet.terrain}}</mat-list-item>
+        <mat-list-item role="listitem">Population: {{planet.population}}</mat-list-item>
+        <mat-list-item role="listitem">Residents:</mat-list-item>
+        <ng-container *ngIf="residents && residents.length > 0; else noResidents">
+            <mat-list-item 
+            role="listitem" 
+            class="list-item-resident" 
+            *ngFor="let resident of residents" 
+            (click)="showResident(resident)">
+            {{resident.name}}
+        </mat-list-item>
+        </ng-container>
+    </mat-list>
+</mat-card>
+
+<ng-template #noResidents>
+    <mat-list-item class="no-residents-list-item" role="listitem">There are no residens for this planet.</mat-list-item>
+</ng-template>
