@@ -8,19 +8,23 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatRadioModule } from '@angular/material/radio';
 import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
-import { PlanetsComponent } from './planets/planets.component';
+import { PlanetСardsComponent } from './components/planet-cards/planet-cards.component';
 import { MatCardModule } from '@angular/material/card';
-import { MatNativeDateModule } from '@angular/material/core';
-import {MatButtonModule} from '@angular/material/button';
-// import { MatCardModule, MatDialogModule, MatButtonModule } from '@angular/material'
+import { MatButtonModule } from '@angular/material/button';
+import { PlanetComponent } from './components/planet/planet.component';
+import {MatListModule} from '@angular/material/list';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ResidentModalComponent } from './components/resident-modal/resident-modal.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlanetsComponent
-  ],
-  entryComponents: [
-    PlanetsComponent
+    PlanetСardsComponent,
+    PlanetComponent,
+    ResidentModalComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,10 @@ import {MatButtonModule} from '@angular/material/button';
     HttpClientModule,
     MatCardModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatListModule,
+    MatDialogModule,
+    MatFormFieldModule
   ],
   providers: [
     ApiService
