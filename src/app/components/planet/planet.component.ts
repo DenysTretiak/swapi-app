@@ -1,13 +1,13 @@
-import { Route } from "@angular/compiler/src/core";
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
-import { ActivatedRoute } from "@angular/router";
-import { forkJoin, Observable, Subject } from "rxjs";
-import { mergeMap, switchMap, takeUntil } from "rxjs/operators";
-import { Planet } from "src/app/interfaces/planet.interface";
-import { Resident } from "src/app/interfaces/resident.inerface";
-import { ApiService } from "src/app/services/api.service";
-import { ResidentModalComponent } from "../resident-modal/resident-modal.component";
+import { Route } from '@angular/compiler/src/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { forkJoin, Observable, Subject } from 'rxjs';
+import { mergeMap, switchMap, takeUntil } from 'rxjs/operators';
+import { Planet } from 'src/app/interfaces/planet.interface';
+import { Resident } from 'src/app/interfaces/resident.inerface';
+import { ApiService } from 'src/app/services/api.service';
+import { ResidentModalComponent } from '../resident-modal/resident-modal.component';
 
 @Component({
     selector: 'app-planet',
@@ -17,7 +17,7 @@ import { ResidentModalComponent } from "../resident-modal/resident-modal.compone
 
 export class PlanetComponent implements OnInit, OnDestroy {
     planet: Planet;
-    residents: any[];
+    residents: Resident[];
 
     private destroyed$ = new Subject<void>();
 
@@ -41,7 +41,7 @@ export class PlanetComponent implements OnInit, OnDestroy {
 
                 return forkJoin(residentsObservables);
             })
-        ).subscribe(residents => this.residents = residents);
+        ).subscribe((residents: Resident[]) => this.residents = residents);
     }
 
     ngOnDestroy(): void {

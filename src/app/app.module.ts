@@ -12,10 +12,10 @@ import { PlanetСardsComponent } from './components/planet-cards/planet-cards.co
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { PlanetComponent } from './components/planet/planet.component';
-import {MatListModule} from '@angular/material/list';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ResidentModalComponent } from './components/resident-modal/resident-modal.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { HeaderComponent } from './components/header/header.component';
 import { StateService } from './services/state.service';
 
