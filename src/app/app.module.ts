@@ -17,6 +17,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ResidentModalComponent } from './components/resident-modal/resident-modal.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { HeaderComponent } from './components/header/header.component';
+import { StateService } from './services/state.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { HeaderComponent } from './components/header/header.component';
     MatFormFieldModule
   ],
   providers: [
-    ApiService
+    ApiService,
+    StateService
   ],
   bootstrap: [AppComponent]
 })

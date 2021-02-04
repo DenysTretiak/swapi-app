@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Planet } from 'src/app/interfaces/planet.interface';
 import { ApiService } from 'src/app/services/api.service';
+import { StateService } from 'src/app/services/state.service';
 
 @Component({
     selector: 'app-planet-cards',
@@ -12,20 +13,32 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class PlanetСardsComponent implements OnInit, OnDestroy {
     planets: Planet[];
-    page = 1;
     error: Error;
+
+    get pageNumber(): number {
+        return this.stateService.pageNumber$.value;
+    }
+
+    set pageNumber(page: number) {
+        this.stateService.pageNumber$.next(page);
+    }
 
     private destroyed$ = new Subject<void>();
 
     constructor(
         private apiService: ApiService,
-        private router: Router
+        private router: Router,
+        private stateService: StateService
     ) {}
 
     ngOnInit(): void {
-        this.apiService.getPlanets()
+        if (this.stateService.planets) {
+            this.planets = this.stateService.planets;
+        } else {
+            this.apiService.getPlanets(this.pageNumber)
             .pipe(takeUntil(this.destroyed$))
             .subscribe((planets) => this.planets = planets);
+        }
     }
 
     ngOnDestroy(): void {
@@ -34,8 +47,12 @@ export class PlanetСardsComponent implements OnInit, OnDestroy {
     }
 
     loadMore(): void {
-        this.apiService.getPlanets(++this.page).pipe(takeUntil(this.destroyed$)).subscribe(
-            (planets) => this.planets = this.planets.concat(planets),
+        this.pageNumber = ++this.pageNumber;
+        this.apiService.getPlanets(this.pageNumber).pipe(takeUntil(this.destroyed$)).subscribe(
+            (planets) => {
+                this.planets = this.planets.concat(planets);
+                this.stateService.planets = this.planets;
+            },
             (error) => this.error = error
         );
     }

@@ -11,7 +11,7 @@ export class ApiService {
 
     constructor(private http: HttpClient) {}
 
-    getPlanets(page: number = 1): Observable<Planet[]> {
+    getPlanets(page: number): Observable<Planet[]> {
         return this.http.get(`${this.api}/planets/?page=${page}`).pipe(
             tap((resp) => console.log(resp, 'resp')), map((resp: any) => resp.results));
     }
